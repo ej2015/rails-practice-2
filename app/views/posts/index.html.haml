@@ -1,0 +1,26 @@
+%p#notice= notice
+%h1 Posts
+%table.table.table-striped
+  %thead.thead-default
+    %tr
+      %th Title
+      %th Body
+      %th Show
+      %th Edit
+      %th Destroy
+  %tbody
+    - @post_presenters.each do |pp|
+      %tr
+        %td= pp.title
+        %td= pp.body
+        %td
+          = link_to pp.obj do
+            = fa_icon 'file-o 2x'
+        %td
+          = link_to edit_post_path(pp.obj) do
+            = fa_icon 'pencil-square-o 2x'
+        %td
+          = link_to pp.obj, method: :delete, data: { confirm: 'Are you sure?' } do
+            = fa_icon 'trash-o 2x'
+%br/
+= link_to 'New Post', new_post_path
